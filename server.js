@@ -209,19 +209,20 @@ MongoClient.connect(uri, function(에러, p_client){
 // static 파일 보관위해 public폴더 쓸거라는 뜻
 
 
-
 /* 
   👉 ./views/nav.html 만들기
 
   공유할 html 파일 : 
   views폴더
   html형식  (ejs X)
+  
+  적용은 ~.ejs파일에만 적용가능함
 */
 /* 
   👉./views/~~~.ejs에 삽입하기
 
+  여기 이자리에 nav_c50.html을 넣을수있음
    <%- include('nav_c50.html') %>
-
 */
 
 
