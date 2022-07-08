@@ -1,21 +1,21 @@
 
 /* 🍀 Server.js 상단 코드 */
 
-// c18
+// c18 express
 const express = require('express')
 const app = express()
 
-// c24-5)
+// c24-5) bodyParser
 const bodyParser= require('body-parser')
 app.use(bodyParser.urlencoded({extended: true})) 
 
-// c30)
+// c30) mongoDB
 const MongoClient = require('mongodb').MongoClient;
 
-// c32) 
+// c32) ejs
 app.set('view engine', 'ejs');
 
-// c50)
+// c50)  static 파일 보관위해 public폴더 쓸거라는 뜻
 app.use('/public_c50', express.static('public_c50'));
 
 
@@ -197,7 +197,7 @@ MongoClient.connect(uri, function(에러, p_client){
 // 🦄🦄50 Bootstrap, nav.ejs..리액트처럼 첨부하기. %- include('~') % 
 
 /* 
- 👉./public/style.css
+ 👉./public/style.css 만들기
 
   static files는 public폴더안에 보관하는게 관습
   CSS파일이 여기에 해당됨
@@ -211,14 +211,18 @@ MongoClient.connect(uri, function(에러, p_client){
 
 
 /* 
-  👉 ./view/nav.html
+  👉 ./views/nav.html 만들기
 
   공유할 html 파일 : 
   views폴더
   html형식  (ejs X)
+*/
+/* 
+  👉./views/~~~.ejs에 삽입하기
+
+   <%- include('nav_c50.html') %>
 
 */
-
 
 
 
