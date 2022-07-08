@@ -1,0 +1,265 @@
+/* 🦄 기본 수업준비 */
+
+
+/* 🥒c50
+static files는 public폴더안에 보관하는게 관습
+CSS파일이 여기에 해당됨
+(static files : 데이터에 의해 변하지 않는 파일)
+*/
+body {
+    max-width: 1000px;
+  }
+  
+  .title {
+    background-color: lightsteelblue;
+  }
+  
+  .overflow {
+    overflow: hidden;
+  }
+  .relative {
+    position: relative;
+  }
+  
+  .display-none {
+    display: none;
+  }
+  
+  .display-block {
+    display: block;
+  }
+  
+  .transforming {
+    transition: transform 0.5s;
+  }
+  
+  /* JS 36. C 33 */
+  /*Global */
+  
+  :root {
+    /* color */
+  
+    --test-color: yellow;
+  
+    --color-white: #ffffff;
+    --color-light-white: #eeeeee;
+    --color-dark-white: #bdbdbd;
+  
+    --color-black: #000000;
+    --color-grey: #616161;
+    --color-light-grey: #7c7979;
+    --color-dark-grey: #4d4d4d;
+  
+    --color-blue: #2b81e4;
+    --color-light-mint: #cbf3f0;
+    --color-yellow: #fff7d1;
+    --color-orange: #feb546;
+    --color-strong-orange: #dc2f02;
+  
+    /* Font size : 16px = 1rem = 100% */
+  
+    --font-large: 1.6rem;
+    --font-medium: 1.4rem;
+    --font-regular: 1.2rem;
+    --font-basic: 1rem;
+    --font-micro: 0.8rem;
+  
+    /* Font weight : 400=normal, 700=bold */
+  
+    --weight-bold: 700;
+    --weight-semi-bold: 600;
+    --weight-basic: 400;
+  
+    /* letterspacing : basic 0.1rem */
+    --letterspacing-basic: 0.1rem;
+    --letterspacing-test: 2rem;
+  
+    /* Size :basic 4px=0.5rem  */
+    --size-border-basic-radius: 0.5rem;
+    --size-border-test-radius: 1rem;
+  
+    /* Animation :basic 300ms=0.3s  */
+  
+    --animation_basic-duration: 0.3s;
+    --animation_test-duration: 1s;
+  }
+  
+  /* Universal tags */
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  li {
+    list-style: none;
+  }
+  button {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+
+  /*  */
+
+  .myBtn {
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+    background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+    background-color: #33bdef;
+    color: #ffffff;
+    
+    border-radius: 6px;
+    border: 1px solid #057fd0;
+    display: inline-block;
+    cursor: pointer;
+    font-family: Arial;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 24px;
+    text-decoration: none;
+    text-shadow: 0px -1px 0px #5b6178;
+  }
+  .myBtn:hover {
+    background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+    background-color: #019ad2;
+  }
+  .myBtn:active {
+    position: relative;
+    top: 1px;
+  }
+  
+  
+  /* Typography */
+  h1 {
+    font-size: var(--font-large);
+    font-weight: var(--weight-bold);
+    color: var(--color-black);
+    margin: 16px 0;
+  }
+  h2 {
+    font-size: var(--font-medium);
+    font-weight: var(--weight-semi-bold);
+    color: var(--color-black);
+    margin: 8px 0;
+  }
+  h3 {
+    font-size: var(--font-regular);
+    font-weight: var(--font-regular);
+    color: var(--color-black);
+    margin: 8px 0;
+  }
+  p {
+    font-size: var(--font-regular);
+    font-weight: var(--font-regular);
+    color: var(--color-black);
+    margin: 4px 0;
+  }
+  
+  /*[Navbar] 드림코딩에서 만든 navbar가져옴 */
+  
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgoldenrodyellow;
+    padding: 8px 12px;
+  }
+  .navbar__logo {
+    font-size: 24px;
+  
+    color: var(--text-color);
+  }
+  
+  .navbar__logo i {
+    color: orange;
+  }
+  .navbar__menu {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+  }
+  .navbar__menu li {
+    padding: 8px 12px;
+  }
+  
+  .navbar__menu li:hover {
+    background-color: orange;
+    border-radius: 4px;
+  }
+  .navbar__icons {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    color: burlywood;
+  }
+  
+  .navbar__icons li {
+    padding: 8px 12px;
+  }
+  
+  .navbar__icons li:hover {
+    background-color: orange;
+    border-radius: 4px;
+  }
+
+
+
+  .footer {
+    display: none;
+    position: absolute;
+    right: 30px;
+    font-size: 24px;
+    color: orange;
+  }
+  
+
+
+
+  /* list.ejs */
+  .list{
+    border: 1px solid gray;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  
+
+  @media screen and (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 8px 24px;
+    }
+  
+    .navbar__menu {
+      display: none;
+      flex-direction: column;
+      text-align: center;
+      width: 100%;
+    }
+    .navbar__icons {
+      display: none;
+      justify-content: center;
+      width: 100%;
+    }
+    .footer {
+      display: block;
+    }
+  
+    .navbar__menu.active,
+    .navbar__icons.active {
+      display: flex;
+    }
+  }
+  

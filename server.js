@@ -15,10 +15,12 @@ const MongoClient = require('mongodb').MongoClient;
 // c32) 
 app.set('view engine', 'ejs');
 
+// c50)
+app.use('/public_c50', express.static('public_c50'));
+
+
  
 // 🦄🦄 terminal 명령어 정리 👉 codingapple-Node.js.MongoDB-2022-0629-classnote폴더...server.js
-
-
 
 // app.listen(3000, function(){
 //     console.log('c30 listening on 3000')
@@ -177,12 +179,8 @@ MongoClient.connect(uri, function(에러, p_client){
         console.log(p_db결과)
         
         // .render('~c~',{ ~b~ : ~a~ })
-        res응답.render('detail_c48.ejs',{ig_data : p_db결과 });
-        
-      })
-
-
-      
+        res응답.render('detail_c48.ejs',{ig_data : p_db결과 });        
+      })      
     });
 
 
@@ -194,6 +192,19 @@ MongoClient.connect(uri, function(에러, p_client){
 })
 
 // // 🌊 실습코드 끝------
+
+
+// 🦄🦄50 Bootstrap, nav.ejs..리액트처럼 첨부하기. %- include('~') % 
+// 👉./public/style.css
+/* 
+  static files는 public폴더안에 보관하는게 관습
+  CSS파일이 여기에 해당됨
+  (static files : 데이터에 의해 변하지 않는 파일)
+*/
+// 👉상단코드) app.use('.public', express.static('pulbic'));
+// static 파일 보관위해 public폴더 쓸거라는 뜻
+
+
 
 
 
