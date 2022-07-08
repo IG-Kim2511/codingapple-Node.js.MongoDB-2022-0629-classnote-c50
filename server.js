@@ -27,7 +27,10 @@ app.use('/public_c50', express.static('public_c50'));
 //   });
 
 app.get('/', function(req요청, res응답) {               //2)
-    res응답.sendFile(__dirname + '/index.html')       //4)
+    // res응답.sendFile(__dirname + '/index.html')       //4)
+
+    // 🥒c50
+    res응답.render('index.ejs')               
 })   
 
 app.get('/style.css', function(req, res) {
@@ -37,6 +40,7 @@ app.get('/style.css', function(req, res) {
 app.get('/write',(req요청,res응답)=>{       //2, 2-1)
     res응답.sendFile(__dirname + '/write.html')       //2-2)
   });
+
 
 
 
@@ -225,7 +229,17 @@ MongoClient.connect(uri, function(에러, p_client){
    <%- include('nav_c50.html') %>
 */
 
+/* index.ejs 파일변경, 폴더이동..
 
+app.get('/', function(req요청, res응답) {               //2)
+    // res응답.sendFile(__dirname + '/index.html')       //4)
+
+    // 🥒c50
+    res응답.render('index.ejs')               
+})   
+
+
+*/
 
 
 
