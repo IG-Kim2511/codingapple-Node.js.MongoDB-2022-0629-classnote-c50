@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>class</title>
+
+    <!--bootstrap  -->
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+    <script src="bootstrap/bootstrap.min.js" defer></script>
+    <!-- jquery -->
+    <script src="jQuery/jquery-3.4.1.min.js" defer></script>
+
+    <!-- CSS, JS -->
+    <link rel="stylesheet" href="../style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- 🦄👻🚀⚡👉🍉 -->
+
+    <section>
+      <p class="title">터미널 명령어 정리</p>
+      <!-- 
+       
+       -->
+    </section>
+    <section class="c3">
+      <p class="title"></p>
+    </section>
+
+    <!-- 🦄🦄c22 Bootstrap을 이용한 빠른 UI 개발 -->
+
+    <nav class="navbar">
+      <div class="navbar__logo">
+        <i class="fas fa-kiwi-bird"></i>
+        <a href="">keiVenture</a>
+      </div>
+      <div class="navbar__menu">
+
+        <li><a href="http://localhost:3000">home</a></li>
+        <li><a href="http://localhost:3000/write">write</a></li>
+        <li><a href="http://localhost:3000/list">list</a></li>
+        <li><a href="/edit">edit</a></li>
+        
+      </div>
+      <div class="navbar__icons">
+        <li><i class="fab fa-odnoklassniki-square"></i></li>
+        <li><i class="fas fa-skiing"></i></li>
+      </div> 
+
+      <a href="#" class="footer">
+        <i class="fas fa-align-justify"></i>
+      </a>
+    </nav>
+
+    <section>
+      <h1>./views/list.ejs</h1>
+    </section>
+    <br><br><br>
+    
+    <!--  -->
+    <section>
+        <h2>🌊c32. 서버에서 가져온 할일 리스트</h2>
+
+        <!-- 🦄c34 -->
+        <h4>할일 제목 : <%= ig_posts %></h4>
+        <p>할일 마감날짜 : <%= ig_posts %></p>    
+        
+
+        <br><br><br><br><br><br>
+        <div>
+            <h2 >🌊c34 반복문</h2>
+            <!-- 🦄c34 반복문     <%  %>   
+                for (let i = 0; i < array.length; i++) {
+                  const element = array[i];              
+                }        
+            -->
+            <%    for (let i = 0; i < ig_posts.length; i++) {   %>  
+              <div class="list">
+                <p>_id: <%= ig_posts[i]._id  %>  </p>
+                <h4>할일 제목 : <%= ig_posts[i].제목 %></h4>
+                <p>할일 마감날짜 : <%= ig_posts[i].날짜 %></p>      
+
+                <!-- 44-40), 44-50) data-id="<%= ig_posts[i]._id %>-->
+                <button class="myBtn delete" data-id="<%= ig_posts[i]._id %>">삭제</button>
+                <button class="myBtn detail" data-id="<%= ig_posts[i]._id %>">detail page</button>
+              </div>
+            <%  }  %> 
+        </div>
+    </section>
+
+    <!-- 🦄🦄c42,44,46, AJAX로 DELETE 요청하기 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+   
+  // 🍀44-40) 버튼클릭 & 실행  👉html
+   $('.delete').click(function (e) {   
+
+    // 🍀46-20) this : 지금 클릭한 것
+    var thisClicked= $(this);
+       
+      //  ajax요청시, /delete서버에 {_id:1}정보 보내줌
+      $.ajax({
+          method: "DELETE",
+          url: "/delete",
+          // data: { _id : 7}      //👉server.js , req.body
+
+          //🍀44-50. e.target.dataset.id : 클릭한 버튼에 숨겨진 data-id값 가져오기
+          data:{_id : e.target.dataset.id}    
+        })
+        .done(function( msg결과 ) {                   //🥒c46-30)
+          console.log('c44. delete-success')
+          // 46)
+          /* 
+            w1 : page 강제 새로고침   -->  location.reload()
+            w2 : 삭제버튼 클릭한 div를 제거 or 안보이게함          
+          */
+
+          // 46-20).parent('div').fadeOut();
+          thisClicked.parent('div').fadeOut();
+
+        }).fail(function (jqXHR, textStatus) {                  //🥒c46-40)
+
+          console.log('c44, delete-fail')
+          console.log( "Request failed: " + textStatus );   
+        });
+   })
+
+
+  //  
+
+  $('.detail').click(function (e) {
+    
+  });
+
+    </script>
+  </body>
+</html>
