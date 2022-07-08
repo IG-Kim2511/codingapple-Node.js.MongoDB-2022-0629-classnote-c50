@@ -2,9 +2,9 @@
 
 
 /* 🥒c50
-static files는 public폴더안에 보관하는게 관습
-CSS파일이 여기에 해당됨
-(static files : 데이터에 의해 변하지 않는 파일)
+  static files는 public폴더안에 보관하는게 관습
+  CSS파일이 여기에 해당됨
+  (static files : 데이터에 의해 변하지 않는 파일)
 */
 body {
     max-width: 1000px;

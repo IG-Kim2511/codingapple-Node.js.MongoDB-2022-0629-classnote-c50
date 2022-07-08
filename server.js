@@ -195,16 +195,29 @@ MongoClient.connect(uri, function(에러, p_client){
 
 
 // 🦄🦄50 Bootstrap, nav.ejs..리액트처럼 첨부하기. %- include('~') % 
-// 👉./public/style.css
+
 /* 
+ 👉./public/style.css
+
   static files는 public폴더안에 보관하는게 관습
   CSS파일이 여기에 해당됨
   (static files : 데이터에 의해 변하지 않는 파일)
 */
+
+
 // 👉상단코드) app.use('.public', express.static('pulbic'));
 // static 파일 보관위해 public폴더 쓸거라는 뜻
 
 
+
+/* 
+  👉 ./view/nav.html
+
+  공유할 html 파일 : 
+  views폴더
+  html형식  (ejs X)
+
+*/
 
 
 
