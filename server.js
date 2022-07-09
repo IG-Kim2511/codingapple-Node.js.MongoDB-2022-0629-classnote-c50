@@ -22,24 +22,6 @@ app.use('/public_c50', express.static('public_c50'));
  
 // 🦄🦄 terminal 명령어 정리 👉 codingapple-Node.js.MongoDB-2022-0629-classnote폴더...server.js
 
-// app.listen(3000, function(){
-//     console.log('c30 listening on 3000')
-//   });
-
-app.get('/', function(req요청, res응답) {               //2)
-    // res응답.sendFile(__dirname + '/index.html')       //4)
-
-    // 🥒c50
-    res응답.render('index.ejs')               
-})   
-
-app.get('/style.css', function(req, res) {
-    res.sendFile(__dirname + "/" + "style.css");
-});
-
-app.get('/write',(req요청,res응답)=>{       //2, 2-1)
-    res응답.sendFile(__dirname + '/write.html')       //2-2)
-  });
 
 
 
@@ -200,7 +182,7 @@ MongoClient.connect(uri, function(에러, p_client){
 
 // 🦄🦄50 Bootstrap, nav.ejs..리액트처럼 첨부하기. %- include('~') % 
 
-/* 
+/* 2)
  👉./public/style.css 만들기
 
   static files는 public폴더안에 보관하는게 관습
@@ -209,11 +191,11 @@ MongoClient.connect(uri, function(에러, p_client){
 */
 
 
-// 👉상단코드) app.use('.public', express.static('pulbic'));
+// 4) 👉상단코드) app.use('.public', express.static('pulbic'));
 // static 파일 보관위해 public폴더 쓸거라는 뜻
 
 
-/* 
+/* 6)
   👉 ./views/nav.html 만들기
 
   공유할 html 파일 : 
@@ -222,24 +204,36 @@ MongoClient.connect(uri, function(에러, p_client){
   
   적용은 ~.ejs파일에만 적용가능함
 */
-/* 
+/* 8)
   👉./views/~~~.ejs에 삽입하기
 
   여기 이자리에 nav_c50.html을 넣을수있음
    <%- include('nav_c50.html') %>
 */
 
-/* index.ejs 파일변경, 폴더이동..
+/* 10)
+  👉./views/index.ejs 파일변경, 폴더이동.. 
+*/
+
+// app.listen(3000, function(){
+//     console.log('c30 listening on 3000')
+//   });
 
 app.get('/', function(req요청, res응답) {               //2)
-    // res응답.sendFile(__dirname + '/index.html')       //4)
+  // res응답.sendFile(__dirname + '/index.html')       //4)
 
-    // 🥒c50
-    res응답.render('index.ejs')               
+  // c50-10)  res응답.render('index.ejs')   
+  res응답.render('index.ejs')               
 })   
 
+app.get('/style.css', function(req, res) {
+  res.sendFile(__dirname + "/" + "style.css");
+});
 
-*/
+app.get('/write',(req요청,res응답)=>{       //2, 2-1)
+  res응답.sendFile(__dirname + '/write.html')       //2-2)
+});
+
 
 
 
