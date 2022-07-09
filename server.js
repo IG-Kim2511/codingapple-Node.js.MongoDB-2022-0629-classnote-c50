@@ -152,8 +152,7 @@ MongoClient.connect(uri, function(에러, p_client){
         
         // c46-40) 실패코드 400:  res응답.status(400).send({message : "c46, fail"});        
         // res응답.status(400).send({message : "c46, fail"});
-      });
-      
+      });      
     });
 
 
