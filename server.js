@@ -243,6 +243,11 @@ app.get('/write',(req요청,res응답)=>{       //2, 2-1)
   res응답.render('write.ejs')
 });
 
+app.get('/detail',(req요청,res응답)=>{    
+
+  res응답.render('detail.ejs')
+});
+
 
 
 
