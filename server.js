@@ -23,6 +23,12 @@ app.use('/public_c50', express.static('public_c50'));
 // 🦄🦄 terminal 명령어 정리 👉 codingapple-Node.js.MongoDB-2022-0629-classnote폴더...server.js
 
 
+/* 
+  👉 c50으로 이동
+  app.get('/', function(req요청, res응답) {               //2)
+    res응답.sendFile(__dirname + '/index.html')       //4)     
+  })   
+*/
 
 
 
@@ -180,7 +186,7 @@ MongoClient.connect(uri, function(에러, p_client){
 // // 🌊 실습코드 끝------
 
 
-// 🦄🦄50 Bootstrap, nav.ejs..리액트처럼 첨부하기. %- include('~') % 
+// 🦄🦄50 Bootstrap, nav.ejs..리액트처럼 첨부하기. <%- include('~') %>
 
 /* 2)
  👉./public/style.css 만들기
@@ -213,6 +219,7 @@ MongoClient.connect(uri, function(에러, p_client){
 
 /* 10)
   👉./views/index.ejs 파일변경, 폴더이동.. 
+  👉./views/write.ejs 파일변경, 폴더이동.. 
 */
 
 // app.listen(3000, function(){
@@ -231,7 +238,10 @@ app.get('/style.css', function(req, res) {
 });
 
 app.get('/write',(req요청,res응답)=>{       //2, 2-1)
-  res응답.sendFile(__dirname + '/write.html')       //2-2)
+  // res응답.sendFile(__dirname + '/write.html')       //2-2)
+
+  // c50-10)  res응답.render('index.ejs')   
+  res응답.render('write.ejs')
 });
 
 

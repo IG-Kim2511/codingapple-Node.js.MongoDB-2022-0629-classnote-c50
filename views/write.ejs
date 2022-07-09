@@ -10,32 +10,39 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
     <title>Document</title>
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="../public_c50/style.css">
 
     <script src="script.js" defer></script>
   </head>
   <body>
     <!-- [nav] -->
-    <nav class="navbar">
-      <div class="navbar__logo">
-        <i class="fas fa-kiwi-bird"></i>
-        <a href="">igalaxy</a>
-      </div>
-      <div class="navbar__menu">
-        <li><a href="http://localhost:3000">home</a></li>
-        <li><a href="http://localhost:3000/write">write</a></li>
-        <li><a href="http://localhost:3000/list">list</a></li>
-        <li><a href="">임시</a></li>
-      </div>
-      <div class="navbar__icons">
-        <li><i class="fab fa-odnoklassniki-square"></i></li>
-        <li><i class="fas fa-skiing"></i></li>
-      </div>
 
-      <a href="#" class="footer">
-        <i class="fas fa-align-justify"></i>
-      </a>
-    </nav>
+        <!-- 🥒c50-10)   <%- include('nav_c50.html') %> -->
+        <%- include('nav_c50.html') %>
+
+    <!-- 
+      <nav class="navbar">
+        <div class="navbar__logo">
+          <i class="fas fa-kiwi-bird"></i>
+          <a href="">igalaxy</a>
+        </div>
+        <div class="navbar__menu">
+          <li><a href="http://localhost:3000">home</a></li>
+          <li><a href="http://localhost:3000/write">write</a></li>
+          <li><a href="http://localhost:3000/list">list</a></li>
+          <li><a href="">임시</a></li>
+        </div>
+        <div class="navbar__icons">
+          <li><i class="fab fa-odnoklassniki-square"></i></li>
+          <li><i class="fas fa-skiing"></i></li>
+        </div>
+
+        <a href="#" class="footer">
+          <i class="fas fa-align-justify"></i>
+        </a>
+      </nav>
+  -->
+
 
     <!-- [post] -->
     <h4 class="container mt-4"><strong>글 작성페이지</strong></h4>
