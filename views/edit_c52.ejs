@@ -23,7 +23,11 @@
             method="POST", 'GET'만 가능함
         -->
 
-      <!-- 🥒c52    
+      <!-- 🦄🥒c52    
+            -20-1)
+            /edit 경로로, POST요청함                    👉server.js     
+            action="/edit?_method=PUT" method="POST"
+
             -20-2)
             html에서는
             GET, POST 요청만 가능함
@@ -38,8 +42,9 @@
             수정된 데이터를 submit하는 기능만들기
      -->
 
-     <!-- c52-20-2 -->
-      <form action="/add" method="POST">
+     <!-- 🥒c52-20-2 -->
+     <!-- action="/edit?_method=PUT" method="POST" -->
+      <form action="/edit?_method=PUT" method="POST">
 
         <div class="form-group">
           <label>오늘의 할일</label>   

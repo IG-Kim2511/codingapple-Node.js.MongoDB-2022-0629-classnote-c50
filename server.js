@@ -18,6 +18,10 @@ app.set('view engine', 'ejs');
 // c50)  static 파일 보관위해 public폴더 쓸거라는 뜻
 app.use('/public_c50', express.static('public_c50'));
 
+// c52)  method-override
+var methodOverride = require('method-override')
+app.use(methodOverride('X-HTTP-Method-Override'))
+
 
  
 // 🦄🦄 terminal 명령어 정리 👉 codingapple-Node.js.MongoDB-2022-0629-classnote폴더...server.js
@@ -194,8 +198,8 @@ MongoClient.connect(uri, function(에러, p_client){
       30) list페이지에서 수정된 데이터가 반영됨
     */
    /* 
-    npm install method-override
-   
+    👉상단코드: method-override
+    npm install method-override   
    */
 
     // 52-10)
@@ -212,6 +216,16 @@ MongoClient.connect(uri, function(에러, p_client){
         res응답.render('edit_c52.ejs', {ig_posts: p_db결과})
       })
     });
+
+    // 52-20-2)
+    app.put('/edit',function () {
+      /* 
+        form에 담긴 데이터를 활용해서,
+        db.collecton 에 업데이트함
+      */
+    });
+
+
 
 })
 
