@@ -22,12 +22,30 @@
             action="/add" method="POST"
             method="POST", 'GET'만 가능함
         -->
+
+      <!-- 🥒c52    
+            -20-2)
+            html에서는
+            GET, POST 요청만 가능함
+            PUT, DELETE  불가능
+
+            npm install method-override
+            /edit경로로 PUT요청 가능해짐      
+            
+            -20-4)
+            🍄value에 db의 데이터 넣음.                                         
+            DB에서 edit할 해당게시물의 데이터를 여기에 넣어야 함
+            수정된 데이터를 submit하는 기능만들기
+     -->
+
+     <!-- c52-20-2 -->
       <form action="/add" method="POST">
 
         <div class="form-group">
-          <label>오늘의 할일</label>
-
-            <!-- 🥒c52 value="<%= ig_posts.제목 %>" -->
+          <label>오늘의 할일</label>   
+          
+            <!-- 🥒c52-20-4 -->
+            <!-- value="<%= ig_posts.제목 %>"  -->
           <input type="text" class="form-control" name="ig_title" value="<%= ig_posts.제목 %>" />
         </div>
         <div class="form-group">

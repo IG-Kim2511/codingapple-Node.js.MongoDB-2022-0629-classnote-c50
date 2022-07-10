@@ -188,7 +188,9 @@ MongoClient.connect(uri, function(에러, p_client){
     */
     /* 🍄
       10) ~/edit/:id 로 접속하면 :id 게시물 데이터 + 수정할수있는 웹페이지로 감
-      20) 수정하고, submit
+
+      20) 수정하고, submit         👉edit_c52.ejs
+
       30) list페이지에서 수정된 데이터가 반영됨
     */
    /* 
@@ -196,6 +198,7 @@ MongoClient.connect(uri, function(에러, p_client){
    
    */
 
+    // 52-10)
     // '/edit/:id'
     app.get('/edit/:id',(req요청,res응답)=>{    
       
@@ -209,8 +212,6 @@ MongoClient.connect(uri, function(에러, p_client){
         res응답.render('edit_c52.ejs', {ig_posts: p_db결과})
       })
     });
-
-
 
 })
 
