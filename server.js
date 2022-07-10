@@ -20,7 +20,7 @@ app.use('/public_c50', express.static('public_c50'));
 
 // c52)  method-override
 var methodOverride = require('method-override')
-app.use(methodOverride('X-HTTP-Method-Override'))
+app.use(methodOverride('_method'))
 
 
  
@@ -180,7 +180,7 @@ MongoClient.connect(uri, function(에러, p_client){
 
 
     // 🦄🦄52 글 수정 기능1, edit page, html에서 PUT요청하기, method-override
-    // 🦄🦄54 글 수정 기능2. DB 데이터를 수정해보자. updateOne 비밀input보내기, redirect(~)
+    // 🦄🦄54 글 수정 기능2. DB 데이터를 수정해보자. updateOne 비밀input보내기, redirect(~), submit button
     console.log('🦄🦄c52, 54')
 
     // 👉edit_c52.ejs
@@ -218,11 +218,27 @@ MongoClient.connect(uri, function(에러, p_client){
     });
 
     // 52-20-2)
-    app.put('/edit',function () {
-      /* 
+    // 🍀c54 👉edit_c52.ejs, style="display:none; 안보이는 input만들어서, 몰래 id정보를 server.js로 보내기
+
+    // 🍀Operator  (c40 reference)
+    // $set:  업데이트 해줌 , (없으면 추가해줌)
+
+    app.put('/edit',function (req요청,res응답) {
+      /* 🍄
         form에 담긴 데이터를 활용해서,
         db.collecton 에 업데이트함
+
+        updateOne({업데이트할 게시물 오브젝트}),{업데이트값},function (p_err,p_db결과) {})
       */
+     db.collection('ig_collection').updateOne({_id: parseInt(req요청.body.ig_id)},{$set:{ 제목: req요청.body.ig_title , 날짜: req요청.body.ig_data}},function (p_err,p_db결과) {  
+
+      console.log('c54 :'+ req요청.body.ig_id +req요청.body.ig_title)  
+      console.log('c54 : updateOne fin')
+
+      // .redirect('/list')
+      res응답.redirect('/list')
+     })
+
     });
 
 

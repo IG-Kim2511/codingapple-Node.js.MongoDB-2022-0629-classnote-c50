@@ -47,11 +47,16 @@
       <form action="/edit?_method=PUT" method="POST">
 
         <div class="form-group">
-          <label>오늘의 할일</label>   
+          <label>제목</label>   
           
             <!-- 🥒c52-20-4 -->
             <!-- value="<%= ig_posts.제목 %>"  -->
           <input type="text" class="form-control" name="ig_title" value="<%= ig_posts.제목 %>" />
+
+          <!-- 🥒c54 style="display:none; 안보이는 input만들어서, 몰래 id정보를 server.js로 보내기-->
+          <!-- name="ig_id" value="<%= ig_posts._id %>" style="display:none; -->
+          <input type="text" class="form-control" name="ig_id" value="<%= ig_posts._id %>" style="display:none;" />
+
         </div>
         <div class="form-group">
           <label>날짜</label>
@@ -60,6 +65,9 @@
           <input type="text" class="form-control" name="ig_data" value="<%= ig_posts.날짜 %>"/>
         </div>
 
+        <!--c54) 
+        type="submit" button클릭하면, name을 가진 input정보를 서버로 전송해줌        
+        type="reset" button을 클릭하면 입력된 input들이 모두 초기화된다.       -->
         <button type="submit" class="btn btn-outline-secondary">Submit</button>
       </form>      
     </div>
