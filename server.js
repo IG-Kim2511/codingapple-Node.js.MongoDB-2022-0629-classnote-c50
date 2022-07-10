@@ -191,14 +191,17 @@ MongoClient.connect(uri, function(에러, p_client){
       20) 수정하고, submit
       30) list페이지에서 수정된 데이터가 반영됨
     */
-
+   /* 
+    npm install method-override
+   
+   */
 
     // '/edit/:id'
     app.get('/edit/:id',(req요청,res응답)=>{    
-
       
       // findOne({_id: req요청.params.id},()=>{})
-      db.collection('ig_collection').findOne({_id: req요청.params.id},function (p_err,p_db결과) {
+      db.collection('ig_collection').findOne({_id: parseInt(req요청.params.id)},function (p_err,p_db결과) {
+        
         
         console.log(p_db결과)
 

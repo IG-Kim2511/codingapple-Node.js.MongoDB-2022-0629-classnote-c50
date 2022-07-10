@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../public_c50/style.css">
 </head>
 <body>    
 
@@ -19,28 +20,23 @@
 
       <!--🦄🥒 c24-4-1)  /add 경로로, POST요청함 👉server.js     
             action="/add" method="POST"
-
             method="POST", 'GET'만 가능함
         -->
       <form action="/add" method="POST">
 
-
         <div class="form-group">
           <label>오늘의 할일</label>
 
-          <!--  🦄🥒c24-4-1) 
-            name="ig-title" 
-            -->
-          <input type="text" class="form-control" name="ig_title" />
+            <!-- 🥒c52 value="<%= ig_posts.제목 %>" -->
+          <input type="text" class="form-control" name="ig_title" value="<%= ig_posts.제목 %>" />
         </div>
         <div class="form-group">
           <label>날짜</label>
-
-          <!--  🦄🥒 c24-4-1) 
-                name="ig-data" />       
-            -->
-          <input type="text" class="form-control" name="ig_data" />
+      
+            <!-- 🥒c52 value="<%= ig_posts.날짜 %>" -->
+          <input type="text" class="form-control" name="ig_data" value="<%= ig_posts.날짜 %>"/>
         </div>
+
         <button type="submit" class="btn btn-outline-secondary">Submit</button>
       </form>      
     </div>
