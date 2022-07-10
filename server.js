@@ -175,11 +175,6 @@ MongoClient.connect(uri, function(에러, p_client){
     });
 
 
-
-
-
-
-
 })
 
 // // 🌊 실습코드 끝------
@@ -232,7 +227,7 @@ app.get('/', function(req요청, res응답) {               //2)
   res응답.render('index.ejs')               
 })   
 
-app.get('/style.css', function(req, res) {
+app.get('./public_c50/style.css', function(req, res) {
   res.sendFile(__dirname + "/" + "style.css");
 });
 
@@ -246,6 +241,33 @@ app.get('/write',(req요청,res응답)=>{       //2, 2-1)
 app.get('/detail',(req요청,res응답)=>{    
 
   res응답.render('detail.ejs')
+});
+
+
+// 🦄🦄52 글 수정 기능1, edit page, html에서 PUT요청하기, method-override
+// 🦄🦄54 글 수정 기능2. DB 데이터를 수정해보자. updateOne 비밀input보내기, redirect(~)
+// 👉edit_c52.ejs
+
+/* 🍀
+  한번에 모든 기능 만드려면 혼란스러우니,
+  순서를 정하자
+  일단 frontend파트 먼저 만들어놓고, 기능개발
+*/
+/* 🍄
+  10) ~/edit/:id 로 접속하면 :id 게시물 데이터 + 수정할수있는 웹페이지로 감
+
+  20) 수정하고, submit
+
+  30) list페이지에서 수정된 데이터가 반영됨
+
+*/
+
+console.log('🦄🦄c52, 54')
+
+
+
+app.get('/edit',(req요청,res응답)=>{    
+  res응답.render('edit_c52.ejs')
 });
 
 
