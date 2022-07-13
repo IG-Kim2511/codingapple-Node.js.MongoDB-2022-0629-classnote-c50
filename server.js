@@ -24,7 +24,7 @@ app.use(methodOverride('_method'))
 
 
  
-// 🦄🦄 terminal 명령어 정리 👉 codingapple-Node.js.MongoDB-2022-0629-classnote폴더...server.js
+// 🦄🦄c terminal 명령어 정리 👉 codingapple-Node.js.MongoDB-2022-0629-classnote폴더...server.js
 
 
 /* 
@@ -40,7 +40,8 @@ app.use(methodOverride('_method'))
 console.log('🦄🦄c30')
 
 // uri
-var uri = "mongodb+srv://iikim2522:ArI5CluLnflFOTFA@cluster0.qqllo.mongodb.net/?retryWrites=true&w=majority";
+
+var uri = "mongodb+srv://iikim2522:KC4Lj26b6EpUG6NO@cluster0.qqllo.mongodb.net/?retryWrites=true&w=majority";
 
 // var db
 var db;   //c30-4)
@@ -89,7 +90,7 @@ MongoClient.connect(uri, function(에러, p_client){
         db.collection('ig_collection').insertOne({ _id:  p_db결과.totalPost ,제목 : req요청.body.ig_title, 날짜 : req요청.body.ig_data}, function(){
           console.log('저장완료 c38-2')          
           
-          // 🦄🦄 선생님 40 게시물마다 id넣기2 - id에 +1하기, updateOne(.), mongodb operator: inc
+          // 🦄🦄c 선생님 40 게시물마다 id넣기2 - id에 +1하기, updateOne(.), mongodb operator: inc
           console.log('🦄🦄c40')  
    
 
@@ -125,9 +126,9 @@ MongoClient.connect(uri, function(에러, p_client){
 
 
 
-    // 🦄🦄42 AJAX로 DELETE 요청하기1, $.ajax(.), app.delete('delete',(.)={})
-    // 🦄🦄44 AJAX로 DELETE 요청하기2, deleteOne(.), data-~~, .dataset.~~, parseInt(.)
-    // 🦄🦄46 AJAX로 DELETE 요청하기3, jQuery기능 .status(200).send()
+    // 🦄🦄c42 AJAX로 DELETE 요청하기1, $.ajax(.), app.delete('delete',(.)={})
+    // 🦄🦄c44 AJAX로 DELETE 요청하기2, deleteOne(.), data-~~, .dataset.~~, parseInt(.)
+    // 🦄🦄c46 AJAX로 DELETE 요청하기3, jQuery기능 .status(200).send()
     console.log('🦄🦄c42,44,46')
 
     //c44) 🍄req요청.body에 담겨온 id를 가진 오브젝트를 db에서 찾아서, 삭제
@@ -160,7 +161,7 @@ MongoClient.connect(uri, function(에러, p_client){
     });
 
 
-    // 🦄🦄48 상세페이지를 만들어보자 :id (URL parameter), req요청.params.id
+    // 🦄🦄c48 상세페이지를 만들어보자 :id (URL parameter), req요청.params.id
     // 👉detail_c48.ejs
 
     // :id
@@ -179,8 +180,8 @@ MongoClient.connect(uri, function(에러, p_client){
     });
 
 
-    // 🦄🦄52 글 수정 기능1, edit page, html에서 PUT요청하기, method-override
-    // 🦄🦄54 글 수정 기능2. DB 데이터를 수정해보자. updateOne 비밀input보내기, redirect(~), submit button
+    // 🦄🦄c52 글 수정 기능1, edit page, html에서 PUT요청하기, method-override
+    // 🦄🦄c54 글 수정 기능2. DB 데이터를 수정해보자. updateOne 비밀input보내기, redirect(~), submit button
     console.log('🦄🦄c52, 54')
 
     // 👉edit_c52.ejs
@@ -248,7 +249,7 @@ MongoClient.connect(uri, function(에러, p_client){
 // // 🌊 실습코드 끝------
 
 
-// 🦄🦄50 Bootstrap, nav.ejs..리액트처럼 첨부하기. <%- include('~') %>
+// 🦄🦄c50 Bootstrap, nav.ejs..리액트처럼 첨부하기. <%- include('~') %>
 
 /* 2)
  👉./public/style.css 만들기
@@ -315,4 +316,9 @@ app.get('/detail',(req요청,res응답)=>{
 
 
 
+// 🦄🦄c56 (회원 로그인0) 세션, JWT, OAuth 등 회원인증 방법 이해하기
+// 🦄🦄c58 (회원 로그인1) app.use(~), passport, passport-local, express-session, passport.authenticate(~),passport.use(new LocalStorategy(~))
+
+// 🦄🦄c60 (회원 로그인2) 아이디 비번을 DB와 비교하고 세션 만들어주기, passport.serializeUser(~)
+// 🦄🦄c62 (회원인증기능 3) 로그인 유저만 접속할 수 있는 페이지 만들기
 
