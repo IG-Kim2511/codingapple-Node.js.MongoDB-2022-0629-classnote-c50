@@ -321,18 +321,43 @@ app.get('/detail',(req요청,res응답)=>{
 
 // 🦄🦄c60 (회원 로그인2) 아이디 비번을 DB와 비교하고 세션 만들어주기, passport.serializeUser(~)
 // 🦄🦄c62 (회원 로그인3) 로그인 유저만 접속할 수 있는 페이지 만들기
-console.log('🦄🦄c56,68,60,62')
+console.log('🦄🦄c56,58,60,62')
+
+// 👉login_c58.ejs
 
 
-MongoClient.connect(uri, function(에러, p_client){ 
+// const passport = require('passport');
+// const LocalStrategy = require('passport-local').Strategy;
+// const session = require('express-session');
+
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(session({ secret: 'ingyum123', resave: true, saveUninitialized: false }));
+
+
+//   //🍀 console.log('🦄🦄c56,58,60,62')
+  app.get('/login',function (req요청,res응답) {
+    res응답.render('login_c58.ejs')
+    
+  });
+  app.post('/login',function (req요청,res응답) {
+    
+  });
+
+
+
+// MongoClient.connect(uri, function(에러, p_client){ 
   
-  if (에러) {
-    return console.log(에러);
-  }
+//   if (에러) {
+//     return console.log(에러);
+//   }
 
-  console.log('c30 데이터베이스 연결 success');
+//   console.log('c30 데이터베이스 연결 success');
 
-// database설정 :  db() : .... 'ig_database' 에 연결
-db = p_client.db('ig_database');
+//   // database설정 :  db() : .... 'ig_database' 에 연결
+//   db = p_client.db('ig_database');
 
-});
+
+
+
+// });
