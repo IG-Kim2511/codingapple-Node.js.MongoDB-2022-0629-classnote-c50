@@ -41,7 +41,7 @@ console.log('🦄🦄c30')
 
 // uri
 
-var uri = "mongodb+srv://iikim2522:KC4Lj26b6EpUG6NO@cluster0.qqllo.mongodb.net/?retryWrites=true&w=majority";
+var uri = "mongodb+srv://iikim2522:NMVsrKelSbIx5asN@cluster0.qqllo.mongodb.net/?retryWrites=true&w=majority";
 
 // var db
 var db;   //c30-4)
@@ -322,3 +322,17 @@ app.get('/detail',(req요청,res응답)=>{
 // 🦄🦄c60 (회원 로그인2) 아이디 비번을 DB와 비교하고 세션 만들어주기, passport.serializeUser(~)
 // 🦄🦄c62 (회원 로그인3) 로그인 유저만 접속할 수 있는 페이지 만들기
 console.log('🦄🦄c56,68,60,62')
+
+
+MongoClient.connect(uri, function(에러, p_client){ 
+  
+  if (에러) {
+    return console.log(에러);
+  }
+
+  console.log('c30 데이터베이스 연결 success');
+
+// database설정 :  db() : .... 'ig_database' 에 연결
+db = p_client.db('ig_database');
+
+});
