@@ -19,7 +19,8 @@ app.set('view engine', 'ejs');
 app.use('/public_c50', express.static('public_c50'));
 
 // c52)  method-override
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
+const passport = require('passport');
 app.use(methodOverride('_method'))
 
 
@@ -325,24 +326,79 @@ console.log('🦄🦄c56,58,60,62')
 
 // 👉login_c58.ejs
 
-
+// 🍀c58-10)
 // const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
-// const session = require('express-session');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
 
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(session({ secret: 'ingyum123', resave: true, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(session({ secret: 'ingyum123', resave: true, saveUninitialized: false }));
 
 
 //   //🍀 console.log('🦄🦄c56,58,60,62')
+
+// 🦄c58
   app.get('/login',function (req요청,res응답) {
     res응답.render('login_c58.ejs')
     
   });
-  app.post('/login',function (req요청,res응답) {
-    
+
+  /*🍀-20)
+    passport.authenticate('local') : (인증해주세요)함수 ,  
+  
+    인증 실패시 :  app.get('/fail',~~)로 연결 (failureRedirect : '/fail')
+
+    인증 성공시 : res응답.redirect('/') 
+  */
+  app.post('/login',passport.authenticate('local',{
+    failureRedirect : '/fail'
+  }),function (req요청,res응답) {
+
+    // redirect
+    res응답.redirect('/')
   });
+
+  app.get('/fail',function () {
+    res응답.render('fail_c58.ejs')    
+  })
+       
+  // 🍀c60-30) passport.authenticate('local',~)...로그인 성공시, 다음코드 실행됨
+    passport.use(new LocalStrategy({
+      usernameField: 'ig_login_id',                 // 👉login_c58.ejs
+      passwordField: 'ig_login_password',            // 👉login_c58.ejs
+      session: true,                                // login 후 session을 저장할것인지?
+      passReqToCallback: false,
+    }, function (req, 입력한아이디, 입력한비번, done) {
+
+      console.log(입력한아이디, 입력한비번);
+
+      /*-40)
+        error처리
+        DB에 ID가 없을때
+        DB에 ID가 있을때
+        DB에 ID가 있으면, input password == DB password 비교함
+
+        -50)
+        done: 3개의 argument를 가짐
+        done(서버에러, 성공시 사용자 db데이터, 에러 메시지)
+
+        -60)        
+        입력한 비밀번호를 암호화한 후 ,DB의 비밀번호와 비교해야함 (나중에 알아서 하세요)
+      */
+      db.collection('login').findOne({ id: 입력한아이디 }, function (에러, user결과) {
+
+        if (에러) return done(에러)
+
+        if (!결과) return done(null, false, { message: '존재하지않는 아이디요' })
+
+        if (입력한비번 == user결과.pw) {
+          return done(null, user결과)
+        } else {
+          return done(null, false, { message: '비번틀렸어요' })
+        }
+      })
+    }));
 
 
 
@@ -356,8 +412,5 @@ console.log('🦄🦄c56,58,60,62')
 
 //   // database설정 :  db() : .... 'ig_database' 에 연결
 //   db = p_client.db('ig_database');
-
-
-
 
 // });
