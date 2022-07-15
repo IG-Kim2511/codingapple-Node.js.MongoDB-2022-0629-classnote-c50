@@ -24,6 +24,8 @@ const passport = require('passport');
 app.use(methodOverride('_method'))
 
 // c64) .env 파일, environment variable, 
+// root folder에 .env파일 만들때 : require('dotenv').config()
+// 다른 folder(env_c64)에 .env파일 만들때 : require('dotenv').config({path: "./env_c64/.env"})
 require('dotenv').config({path: "./env_c64/.env"})
 
 
@@ -453,7 +455,9 @@ console.log('🦄🦄c64 ')
 /* 
   🍀 npm install dotenv
 
-  🍀 👉상단코드 : require('dotenv').config()
+  🍀 👉상단코드 : 
+    root folder에 .env파일 만들때 : require('dotenv').config()
+    다른 folder(env_c64)에 .env파일 만들때 : require('dotenv').config({path: "./env_c64/.env"})
   
   🍀 server.js와 같은 폴더에 '.env'파일 만듬
    👉.env  

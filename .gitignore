@@ -1,6 +1,13 @@
+
+# .env
 /env_c64/.env
 
 
 
+
+# test
+# root folder안의 파일숨기기
 /.test_gitignore
+
+# 다른 folder안의 파일숨기기
 /test_gitignore2/.test_gitignore2
