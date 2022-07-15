@@ -24,7 +24,9 @@ const passport = require('passport');
 app.use(methodOverride('_method'))
 
 // c64) .env 파일, environment variable, 
-require('dotenv').config()
+require('dotenv').config({path: "./env_c64/.env"})
+
+
 
 // // 🍀c58-10)
 // // const passport = require('passport');
