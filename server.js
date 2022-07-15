@@ -23,6 +23,18 @@ var methodOverride = require('method-override');
 const passport = require('passport');
 app.use(methodOverride('_method'))
 
+// c64) .env 파일, environment variable, 
+require('dotenv').config()
+
+// // 🍀c58-10)
+// // const passport = require('passport');
+// const LocalStrategy = require('passport-local').Strategy;
+// const session = require('express-session');
+
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(session({ secret: 'ingyum123', resave: true, saveUninitialized: false }));
+
 
  
 // 🦄🦄c terminal 명령어 정리 👉 codingapple-Node.js.MongoDB-2022-0629-classnote폴더...server.js
@@ -42,7 +54,8 @@ console.log('🦄🦄c30')
 
 // uri
 
-var uri = "mongodb+srv://iikim2522:NMVsrKelSbIx5asN@cluster0.qqllo.mongodb.net/?retryWrites=true&w=majority";
+// var uri = "mongodb+srv://iikim2522:myhk2gXIqgvm2IO8@cluster0.qqllo.mongodb.net/?retryWrites=true&w=majority";
+var uri = process.env.DB_URL;
 
 // var db
 var db;   //c30-4)
@@ -317,116 +330,129 @@ app.get('/detail',(req요청,res응답)=>{
 
 
 
-// 🦄🦄c56 (회원 로그인0) 세션, JWT, OAuth 등 회원인증 방법 이해하기
-// 🦄🦄c58 (회원 로그인1) app.use(~), passport, passport-local, express-session, passport.authenticate(~),passport.use(new LocalStorategy(~))
+// // 🦄🦄c56 (회원 로그인0) 세션, JWT, OAuth 등 회원인증 방법 이해하기
+// // 🦄🦄c58 (회원 로그인1) app.use(~), passport, passport-local, express-session, passport.authenticate(~),passport.use(new LocalStorategy(~))
 
-// 🦄🦄c60 (회원 로그인2) 아이디 비번을 DB와 비교하고 세션 만들어주기, passport.serializeUser(~)
-// 🦄🦄c62 (회원 로그인3) 로그인 유저만 접속할 수 있는 페이지 만들기
-console.log('🦄🦄c56,58,60,62')
+// // 🦄🦄c60 (회원 로그인2) 아이디 비번을 DB와 비교하고 세션 만들어주기, passport.serializeUser(~)
+// // 🦄🦄c62 (회원 로그인3) 로그인 유저만 접속할 수 있는 페이지 만들기
+// console.log('🦄🦄c56,58,60,62')
 
-// 👉login_c58.ejs
+// // 👉login_c58.ejs
 
-// 🍀c58-10)
-// const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const session = require('express-session');
+// // 🍀c58-10)
+// // const passport = require('passport');
+// const LocalStrategy = require('passport-local').Strategy;
+// const session = require('express-session');
 
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(session({ secret: 'ingyum123', resave: true, saveUninitialized: false }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(session({ secret: 'ingyum123', resave: true, saveUninitialized: false }));
 
 
-//   //🍀 console.log('🦄🦄c56,58,60,62')
 
-// 🦄c58
-  app.get('/login',function (req요청,res응답) {
-    res응답.render('login_c58.ejs')
+// // 🦄c58
+//   app.get('/login',function (req요청,res응답) {
+//     res응답.render('login_c58.ejs')
     
-  });
+//   });
 
-  /*🍀-20)
-    passport.authenticate('local') : (인증해주세요)함수 ,  
+//   /*🍀-20)
+//     passport.authenticate('local') : (인증해주세요)함수 ,  
   
-    인증 실패시 :  app.get('/fail',~~)로 연결 (failureRedirect : '/fail')
+//     인증 실패시 :  app.get('/fail',~~)로 연결 (failureRedirect : '/fail')
 
-    인증 성공시 : res응답.redirect('/') 
-  */
-  app.post('/login',passport.authenticate('local',{
-    failureRedirect : '/fail'
-  }),function (req요청,res응답) {
+//     인증 성공시 : res응답.redirect('/') 
+//   */
+//   app.post('/login',passport.authenticate('local',{
+//     failureRedirect : '/fail'
+//   }),function (req요청,res응답) {
 
-    // redirect
-    res응답.redirect('/')
-  });
+//     // redirect
+//     res응답.redirect('/')
+//   });
 
-  app.get('/fail',function () {
-    res응답.render('fail_c58.ejs')    
-  })
+//   app.get('/fail',function () {
+//     res응답.render('fail_c58.ejs')    
+//   })
        
-  // 🍀c60-30) passport.authenticate('local',~)...로그인 성공시, 다음코드 실행됨
-    passport.use(new LocalStrategy({
-      usernameField: 'ig_login_id',                 // 👉login_c58.ejs
-      passwordField: 'ig_login_password',            // 👉login_c58.ejs
-      session: true,                                // login 후 session을 저장할것인지?
-      passReqToCallback: false,
-    }, function (req, 입력한아이디, 입력한비번, done) {
+//   // 🍀c60-30) passport.authenticate('local',~)...로그인 성공시, 다음코드 실행됨
+//     passport.use(new LocalStrategy({
+//       usernameField: 'ig_login_id',                 // 👉login_c58.ejs
+//       passwordField: 'ig_login_password',            // 👉login_c58.ejs
+//       session: true,                                // login 후 session을 저장할것인지?
+//       passReqToCallback: false,
+//     }, function (req, 입력한아이디, 입력한비번, done) {
 
-      console.log(입력한아이디, 입력한비번);
+//       console.log(입력한아이디, 입력한비번);
 
-      /*-40)
-        error처리
-        DB에 ID가 없을때
-        DB에 ID가 있을때
-        DB에 ID가 있으면, input password == DB password 비교함
+//       /*-40)
+//         error처리
+//         DB에 ID가 없을때
+//         DB에 ID가 있을때
+//         DB에 ID가 있으면, input password == DB password 비교함
 
-        -50)
-        done: 3개의 argument를 가짐
-        done(서버에러, 성공시 사용자 db데이터, 에러 메시지)
+//         -50)
+//         done: 3개의 argument를 가짐
+//         done(서버에러, 성공시 사용자 db데이터, 에러 메시지)
 
-        -60)        
-        입력한 비밀번호를 암호화한 후 ,DB의 비밀번호와 비교해야함 (나중에 알아서 하세요)
-      */
-      db.collection('ig_login').findOne({ id: 입력한아이디 }, function (에러, user결과) {
+//         -60)        
+//         입력한 비밀번호를 암호화한 후 ,DB의 비밀번호와 비교해야함 (나중에 알아서 하세요)
+//       */
+//       db.collection('ig_login').findOne({ id: 입력한아이디 }, function (에러, user결과) {
 
-        if (에러) return done(에러)
+//         if (에러) return done(에러)
 
-        if (!결과) return done(null, false, { message: '존재하지않는 아이디요' })
+//         if (!결과) return done(null, false, { message: '존재하지않는 아이디요' })
 
-        if (입력한비번 == user결과.ig_password) {
+//         if (입력한비번 == user결과.ig_password) {
 
-          return done(null, user결과)
-        } else {
+//           return done(null, user결과)
+//         } else {
 
-          return done(null, false, { message: '비번틀렸어요' })
-        }
-      })
-    }));
+//           return done(null, false, { message: '비번틀렸어요' })
+//         }
+//       })
+//     }));
 
 
-    // -70)
-    // login 성공 때, id를 이용해서 session을 저장
-    passport.serializeUser(function (user,done) {
-      done(null, user.id)
+//     // -70)
+//     // login 성공 때, id를 이용해서 session을 저장
+//     passport.serializeUser(function (user,done) {
+//       done(null, user.id)
       
-    });
+//     });
 
-    // login 성공 때, 위의 session데이터를 가진사람을 db에서 찾아주세요
-    passport.deserializeUser(function (아이디,done) {
+//     // login 성공 때, 위의 session데이터를 가진사람을 db에서 찾아주세요
+//     passport.deserializeUser(function (아이디,done) {
       
-      done(null, {})
+//       done(null, {})
       
-    });
+//     });
 
 
-// MongoClient.connect(uri, function(에러, p_client){ 
+// // MongoClient.connect(uri, function(에러, p_client){ 
   
-//   if (에러) {
-//     return console.log(에러);
-//   }
+// //   if (에러) {
+// //     return console.log(에러);
+// //   }
 
-//   console.log('c30 데이터베이스 연결 success');
+// //   console.log('c30 데이터베이스 연결 success');
 
-//   // database설정 :  db() : .... 'ig_database' 에 연결
-//   db = p_client.db('ig_database');
+// //   // database설정 :  db() : .... 'ig_database' 에 연결
+// //   db = p_client.db('ig_database');
 
-// });
+// // });
+
+
+// 🦄🦄c64 .env 파일, environment variable, 가변적인 변수 데이터들 관리하기 
+console.log('🦄🦄c64 ')
+
+
+/* 
+  🍀 npm install dotenv
+
+  🍀 👉상단코드 : require('dotenv').config()
+  
+  🍀 server.js와 같은 폴더에 '.env'파일 만듬
+   👉.env  
+*/
