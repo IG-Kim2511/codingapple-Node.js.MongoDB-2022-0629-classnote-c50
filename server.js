@@ -386,20 +386,36 @@ app.use(session({ secret: 'ingyum123', resave: true, saveUninitialized: false })
         -60)        
         입력한 비밀번호를 암호화한 후 ,DB의 비밀번호와 비교해야함 (나중에 알아서 하세요)
       */
-      db.collection('login').findOne({ id: 입력한아이디 }, function (에러, user결과) {
+      db.collection('ig_login').findOne({ id: 입력한아이디 }, function (에러, user결과) {
 
         if (에러) return done(에러)
 
         if (!결과) return done(null, false, { message: '존재하지않는 아이디요' })
 
-        if (입력한비번 == user결과.pw) {
+        if (입력한비번 == user결과.ig_password) {
+
           return done(null, user결과)
         } else {
+
           return done(null, false, { message: '비번틀렸어요' })
         }
       })
     }));
 
+
+    // -70)
+    // login 성공 때, id를 이용해서 session을 저장
+    passport.serializeUser(function (user,done) {
+      done(null, user.id)
+      
+    });
+
+    // login 성공 때, 위의 session데이터를 가진사람을 db에서 찾아주세요
+    passport.deserializeUser(function (아이디,done) {
+      
+      done(null, {})
+      
+    });
 
 
 // MongoClient.connect(uri, function(에러, p_client){ 
