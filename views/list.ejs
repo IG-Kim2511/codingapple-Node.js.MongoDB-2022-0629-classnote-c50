@@ -33,30 +33,30 @@
     <!-- 🥒c50      <%- include('nav_c50.html') %> -->
     <%- include('nav_c50.html') %>
     
-  <!-- 
-    <nav class="navbar">
-      <div class="navbar__logo">
-        <i class="fas fa-kiwi-bird"></i>
-        <a href="">keiVenture</a>
-      </div>
-      <div class="navbar__menu">
+    <!-- 
+      <nav class="navbar">
+        <div class="navbar__logo">
+          <i class="fas fa-kiwi-bird"></i>
+          <a href="">keiVenture</a>
+        </div>
+        <div class="navbar__menu">
 
-        <li><a href="http://localhost:3000">home</a></li>
-        <li><a href="http://localhost:3000/write">write</a></li>
-        <li><a href="http://localhost:3000/list">list</a></li>
-        <li><a href="/edit">edit</a></li>
-        
-      </div>
-      <div class="navbar__icons">
-        <li><i class="fab fa-odnoklassniki-square"></i></li>
-        <li><i class="fas fa-skiing"></i></li>
-      </div> 
+          <li><a href="http://localhost:3000">home</a></li>
+          <li><a href="http://localhost:3000/write">write</a></li>
+          <li><a href="http://localhost:3000/list">list</a></li>
+          <li><a href="/edit">edit</a></li>
+          
+        </div>
+        <div class="navbar__icons">
+          <li><i class="fab fa-odnoklassniki-square"></i></li>
+          <li><i class="fas fa-skiing"></i></li>
+        </div> 
 
-      <a href="#" class="footer">
-        <i class="fas fa-align-justify"></i>
-      </a>
-    </nav>
- -->
+        <a href="#" class="footer">
+          <i class="fas fa-align-justify"></i>
+        </a>
+      </nav>
+  -->
 
 
 
@@ -64,6 +64,15 @@
     <section>
       <h1>./views/list.ejs</h1>
     </section>
+    <br><br><br>
+    
+
+    <!-- 🥒🦄c66 -->    
+    <!-- 👉script -->
+    <div>
+      <input type="text">
+      <button id="search">search</button>
+    </div>
     <br><br><br>
     
     <!--  -->
@@ -89,7 +98,7 @@
                 <h4>할일 제목 : <%= ig_posts[i].제목 %></h4>
                 <p>할일 마감날짜 : <%= ig_posts[i].날짜 %></p>      
 
-                <!-- 44-40), 44-50) data-id="<%= ig_posts[i]._id %>-->
+                <!-- 👉script. 44-40), 44-50) data-id="<%= ig_posts[i]._id %>-->
                 <button class="myBtn delete" data-id="<%= ig_posts[i]._id %>">삭제</button>
                 <button class="myBtn edit" data-id="<%= ig_posts[i]._id %>">edit</button>
                 <button class="myBtn detail" data-id="<%= ig_posts[i]._id %>">detail page</button>
@@ -98,50 +107,79 @@
         </div>
     </section>
 
+
+
+
+
     <!-- 🦄🦄c42,44,46, AJAX로 DELETE 요청하기 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <script>
    
-  // 🍀44-40) 버튼클릭 & 실행  👉html
-   $('.delete').click(function (e) {   
+      // 🍀44-40) 버튼클릭 & 실행  👉html
+      $('.delete').click(function (e) {   
 
-    // 🍀46-20) this : 지금 클릭한 것
-    var thisClicked= $(this);
-       
-      //  ajax요청시, /delete서버에 {_id:1}정보 보내줌
-      $.ajax({
-          method: "DELETE",
-          url: "/delete",
-          // data: { _id : 7}      //👉server.js , req.body
+        // 🍀46-20) this : 지금 클릭한 것
+        var thisClicked= $(this);
+          
+        //  ajax요청시, /delete서버에 {_id:1}정보 보내줌
+        $.ajax({
+            method: "DELETE",
+            url: "/delete",
+            // data: { _id : 7}      //👉server.js , req.body
 
-          //🍀44-50. e.target.dataset.id : 클릭한 버튼에 숨겨진 data-id값 가져오기
-          data:{_id : e.target.dataset.id}    
-        })
-        .done(function( msg결과 ) {                   //🥒c46-30)
-          console.log('c44. delete-success')
-          // 46)
-          /* 
-            w1 : page 강제 새로고침   -->  location.reload()
-            w2 : 삭제버튼 클릭한 div를 제거 or 안보이게함          
-          */
+            //🍀44-50. e.target.dataset.id : 클릭한 버튼에 숨겨진 data-id값 가져오기
+            data:{_id : e.target.dataset.id}    
+          })
+          .done(function( msg결과 ) {                   //🥒c46-30)
+            console.log('c44. delete-success')
+            // 46)
+            /* 
+              w1 : page 강제 새로고침   -->  location.reload()
+              w2 : 삭제버튼 클릭한 div를 제거 or 안보이게함          
+            */
 
-          // 46-20).parent('div').fadeOut();
-          thisClicked.parent('div').fadeOut();
+            // 46-20).parent('div').fadeOut();
+            thisClicked.parent('div').fadeOut();
 
-        }).fail(function (jqXHR, textStatus) {                  //🥒c46-40)
+          }).fail(function (jqXHR, textStatus) {                  //🥒c46-40)
 
-          console.log('c44, delete-fail')
-          console.log( "Request failed: " + textStatus );   
+            console.log('c44, delete-fail')
+            console.log( "Request failed: " + textStatus );   
+          });
+      })
+
+
+        // 🍀 detail button -> 나중에 만들기
+
+        $('.detail').click(function (e) {
+                
+          
         });
-   })
 
 
-    // 🍀 detail button -> 나중에 만들기
+        //🍀c66-10). search기능 만들기
+        /* 🍄
+          2) search btn click,
 
-    $('.detail').click(function (e) {
+          4) DB에서 데이터 꺼냄. 
+                1개 찾기   : collection().findOne()
+                여러개 찾기 : collection().find().toArray()
+
+          6)ejs에 데이터 보냄 끝 
+            6-a) POST요청으로 기능만들기. 끝
             
-       
-    });
+            6-b) GET요청으로 만들어보기  👉 이제부터 할 코드 👉 "Query string parameters"사용함
+        */
+    
+        // 버튼 클릭, 서버로 get요청 , Query string parameters
+        // 버튼클릭 /search로 이동함, 사실상 get요청과 같음
+       $('#search').click(function () {   
+        
+        // window.location.replace('/search')
+        window.location.replace('/search?value=ig')
+
+       })
 
     </script>
   </body>
