@@ -434,18 +434,7 @@ app.get('/detail',(req요청,res응답)=>{
 //     });
 
 
-// // MongoClient.connect(uri, function(에러, p_client){ 
-  
-// //   if (에러) {
-// //     return console.log(에러);
-// //   }
 
-// //   console.log('c30 데이터베이스 연결 success');
-
-// //   // database설정 :  db() : .... 'ig_database' 에 연결
-// //   db = p_client.db('ig_database');
-
-// // });
 
 
 // 🦄🦄c64 .env 파일, environment variable, 가변적인 변수 데이터들 관리하기 
@@ -465,38 +454,49 @@ console.log('🦄🦄c64 ')
 
 
 
+//🦄🦄c66
+
+MongoClient.connect(uri, function(에러, p_client){ 
+  
+  if (에러) {
+    return console.log(에러);
+  }
+  db = p_client.db('ig_database');
 
 
+  //🦄🦄c66 검색기능1 Query string parameters, .replace('/search?value=' + 입력한value), req요청.query.value
+  // 👉list.ejs
 
-//🦄🦄c66 검색기능1 Query string parameters, .replace('/search?value=' + 입력한value), req요청.query.value
-// 👉list.ejs
+  /* 
+      문제점: 정확히 일치하는 것만 찾아줌
 
-/* 
+      여기 예제에서는 '매우 많이 글쓰기'를 안찾아줌
+  */
 
-collection().findOne()
-collection().find().toArray()
+  //🍀c66-10)👉list.ejs , query string 만듬
+  //🍀c66-20) server에서 query string꺼내는법 
+
+  // req요청.query : get함수에서 요청.body 쓰는것과 비슷하게 사용하는 방식임
+
+  /* 
+    collection().findOne()           : 1개 찾을 때
+    collection().find().toArray()     : 여러개 찾을 때
+  */
+
+  app.get('/search',(req요청,res응답)=>{
+
+    // req요청.query 
+    console.log(req요청.query)
+    console.log(req요청.query.value)
+
+    //  collection().find().toArray()  
+    // find({제목:req요청.query.value})
+    db.collection('ig_collection').find({제목:req요청.query.value}).toArray((err,p_db결과)=>{
+      console.log(p_db결과)
+    })
 
 
-POST요청으로 기능만들기. 끝
+    
+  });
 
-
-
-GET요청으로 만들어보기
-
-"Query string parameters"사용함
-
-
-
-input에 유저가 입력한 value
-
-
-
-(get함수에서 요청.body 쓰는것과 비슷하게 사용하는 방식임)
-
-
-
-
-문제점: 정확히 일치하는 것만 찾아줌
-
-여기 예제에서는 '매우 많이 글쓰기'를 안찾아줌
- */
+});

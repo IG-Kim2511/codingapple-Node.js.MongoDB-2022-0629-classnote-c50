@@ -70,7 +70,8 @@
     <!-- 🥒🦄c66 -->    
     <!-- 👉script -->
     <div>
-      <input type="text">
+      <!-- id="search-input", id="search" -->
+      <input type="text" id="search-input">
       <button id="search">search</button>
     </div>
     <br><br><br>
@@ -158,26 +159,37 @@
         });
 
 
-        //🍀c66-10). search기능 만들기
+        //🦄🦄c66
+        //🍀c66-10). search기능 만들기, query string 만듬 (Query string parameters)
         /* 🍄
-          2) search btn click,
+          -2) search btn click,
 
-          4) DB에서 데이터 꺼냄. 
+          -4) DB에서 데이터 꺼냄. 
                 1개 찾기   : collection().findOne()
                 여러개 찾기 : collection().find().toArray()
 
-          6)ejs에 데이터 보냄 끝 
+          -6)ejs에 데이터 보냄 끝 
             6-a) POST요청으로 기능만들기. 끝
             
             6-b) GET요청으로 만들어보기  👉 이제부터 할 코드 👉 "Query string parameters"사용함
+
+          c66-20) 👉server.js에서 query string꺼내씀
         */
-    
-        // 버튼 클릭, 서버로 get요청 , Query string parameters
-        // 버튼클릭 /search로 이동함, 사실상 get요청과 같음
-       $('#search').click(function () {   
-        
+        /* c66-10-6-b)
+            버튼 클릭, 서버로 get요청 , Query string parameters
+
+            Query string parameters : `/~~?value=${ig_search_input값}`
+
+            window.location.replace('/search'):  버튼클릭 /search로 이동함, 사실상 get요청과 같음 
+        */
+       $('#search').click(function () {           
+
+        // $('#search-input').val() : input value 
+        var ig_search_input값 = $('#search-input').val()
+
         // window.location.replace('/search')
-        window.location.replace('/search?value=ig')
+        // `/~~?value=${ig_search_input값}`
+        window.location.replace(`/search?value=${ig_search_input값}`)
 
        })
 
