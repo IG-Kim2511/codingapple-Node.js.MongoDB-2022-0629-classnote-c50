@@ -454,7 +454,7 @@ console.log('🦄🦄c64 ')
 
 
 
-//🦄🦄c66
+//🦄🦄c66, 68, 70
 
 MongoClient.connect(uri, function(에러, p_client){ 
   
@@ -465,22 +465,20 @@ MongoClient.connect(uri, function(에러, p_client){
 
 
   //🦄🦄c66 검색기능1 Query string parameters, .replace('/search?value=' + 입력한value), req요청.query.value
+  //🦄🦄c68 검색기능2 mongoDB사이트...index탭, Binary Search, 
+
   // 👉list.ejs
 
-  /* 
-      문제점: 정확히 일치하는 것만 찾아줌
-
-      여기 예제에서는 '매우 많이 글쓰기'를 안찾아줌
-  */
-
   //🍀c66-10)👉list.ejs , query string 만듬
-  //🍀c66-20) server에서 query string꺼내는법 
 
-  // req요청.query : get함수에서 요청.body 쓰는것과 비슷하게 사용하는 방식임
+  /*
+    🍀c66-20) server.js에서 query string꺼내씀, DB에서 데이터 꺼냄. 
 
-  /* 
-    collection().findOne()           : 1개 찾을 때
-    collection().find().toArray()     : 여러개 찾을 때
+    -a) req요청.query : get함수에서 요청.body 쓰는것과 비슷하게 사용하는 방식임
+
+    -b)
+      collection().findOne()           : 1개 찾을 때
+      collection().find().toArray()     : 여러개 찾을 때
   */
 
   app.get('/search',(req요청,res응답)=>{
@@ -490,12 +488,119 @@ MongoClient.connect(uri, function(에러, p_client){
     console.log(req요청.query.value)
 
     //  collection().find().toArray()  
-    // find({제목:req요청.query.value})
+    // find({제목:req요청.query.value})  👉 문제점: 정확히 일치하는 것만 찾아줌
     db.collection('ig_collection').find({제목:req요청.query.value}).toArray((err,p_db결과)=>{
       console.log(p_db결과)
+
+
+       //🍀🦄c68-10) 
+      // 👉search_c68.ejs
+
+      /*🍀-20)
+          정규표현식이란?(Regular Expression: Regex)
+          https://iankim2511.tistory.com/862
+
+
+          /글쓰기/ 들어간것 모두 찾아줌
+          검색할게 1억개있다면?? 
+
+
+          🍀-30) 👉mongoDB사이트  collection 👉 index
+          가나다라 정렬
+          오름차순, 내림차순
+          동시에 여러개 설정가능함      
+      */
+      res응답.render('search_c68.ejs',{ig_posts:p_db결과});
     })
 
+   
+    
+  });
 
+});
+
+//🦄🦄c70 검색기능3 mongoDB사이트...search index탭, $.parma(~), $("#form").serialize(~), aggregate(~), $search, $sort,$limit, $project, {$meta:"searchScore"}
+/* 
+    이런 Query string 만들기 번거로울때 , jQuery로 간단히 만드는 방법
+    form 안의 모든 input등의 value가 Query string으로 바뀜
+
+    우리가 만든 index에 의해서 검색하는 코드
+    full scan 하는 이전방법
+
+    collection안의 항목 설정
+    (collection 오브젝트 뭉치안의 오브젝트 설정)
+
+
+    okky처럼 구글로 검색이동시키는 방법도 있음
+    eng사이트 만들때는 필요없음
+
+
+*/
+
+/* 
+ 🍀70-10) 👉mongoDB사이트...search index탭
+
+ 🍀70-20) .aggregate(검색조건).toArray()  
+
+ 🍀70-30)
+    $sort : 
+    결과정렬
+    _id 순으로 정렬
+    1, -1 :  오름차순, 내림차순 정렬
+
+    $limit :
+    상위 10개만 가져와주세요...라는 limit
+
+    $project : 검색결과에서 원하는것만 보여줌
+    1 : 검색결과 나옴
+    0 : 검색결과 나오지 않음
+    항목에 넣지않아도, 검색결과 나오지 않는걸..로 알고있음
+
+    searchScore:  검색어와 게시물의 관련석이 높은것, 검색 많이 하는 항목은 score가 높아짐
+
+    score는 collection에 없어도 이런식으로 코딩하면 , 
+    검색결과필터링으로 넣어줌
+
+*/
+
+
+MongoClient.connect(uri, function(에러, p_client){ 
+  
+  if (에러) {
+    return console.log(에러);
+  }
+  db = p_client.db('ig_database');
+
+
+  app.get('/search',(req요청,res응답)=>{
+
+    console.log(req요청.query.value)
+    
+    //70-20) .aggregate(검색조건).toArray()  
+    var 검색조건 =[
+      {
+        $search:{
+          index : "ig_titleSearch",
+          text:{
+            query: req요청.query.value,
+            path: "제목"
+          }
+
+        }
+      },
+      // 70-30)$sort, $limit,$project
+      {$sort :{_id :1}},
+      {$limit : 10},
+      {$project : {제목 : 1, _id: 0, score :{$meta : "searchScore"}}}
+    ];
+    db.collection('ig_collection').aggregate(검색조건).toArray((err,p_db결과)=>{
+      console.log(p_db결과)
+
+
+      res응답.render('search_c68.ejs',{ig_posts:p_db결과});
+    })
+
+   
     
   });
 
