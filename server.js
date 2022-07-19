@@ -582,10 +582,9 @@ MongoClient.connect(uri, function(에러, p_client){
 
 
       res응답.render('search_c68.ejs',{ig_posts:p_db결과});
-    })
-
-   
-    
+    })       
   });
-
 });
+
+
+//🦄🦄c72 req.body._id, req.user._id, 회원 기능...게시판 기능
