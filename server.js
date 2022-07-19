@@ -492,7 +492,7 @@ MongoClient.connect(uri, function(에러, p_client){
     db.collection('ig_collection').find({제목:req요청.query.value}).toArray((err,p_db결과)=>{
       console.log(p_db결과)
 
-
+  
        //🍀🦄c68-10) 
       // 👉search_c68.ejs
 
