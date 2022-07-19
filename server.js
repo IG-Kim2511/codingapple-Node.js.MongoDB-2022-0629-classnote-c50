@@ -520,24 +520,10 @@ MongoClient.connect(uri, function(에러, p_client){
 });
 
 //🦄🦄c70 검색기능3 mongoDB사이트...search index탭, $.parma(~), $("#form").serialize(~), aggregate(~), $search, $sort,$limit, $project, {$meta:"searchScore"}
-/* 
-    이런 Query string 만들기 번거로울때 , jQuery로 간단히 만드는 방법
-    form 안의 모든 input등의 value가 Query string으로 바뀜
-
-    우리가 만든 index에 의해서 검색하는 코드
-    full scan 하는 이전방법
-
-    collection안의 항목 설정
-    (collection 오브젝트 뭉치안의 오브젝트 설정)
-
-
-    okky처럼 구글로 검색이동시키는 방법도 있음
-    eng사이트 만들때는 필요없음
-
-
-*/
 
 /* 
+  🍀70-2) me: okky처럼 구글로 검색이동시키는 방법도 있음, 
+
  🍀70-10) 👉mongoDB사이트...search index탭
 
  🍀70-20) .aggregate(검색조건).toArray()  
@@ -560,9 +546,7 @@ MongoClient.connect(uri, function(에러, p_client){
 
     score는 collection에 없어도 이런식으로 코딩하면 , 
     검색결과필터링으로 넣어줌
-
 */
-
 
 MongoClient.connect(uri, function(에러, p_client){ 
   
