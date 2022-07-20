@@ -26,12 +26,6 @@ function ig_middleware_shop(req,res,next) {
   console.log('ig_middleware_c74_shop')  
 }
 
-//🍉 여기있는 모든 url에 미들웨어 적용하기
-router.use(ig_all);
-
-function ig_all(req,res,next) {
-  console.log('ig_all')  
-}
 
 
 
