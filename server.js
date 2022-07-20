@@ -23,13 +23,6 @@ var methodOverride = require('method-override');
 const passport = require('passport');
 app.use(methodOverride('_method'))
 
-// c64) .env 파일, environment variable, 
-// root folder에 .env파일 만들때 : require('dotenv').config()
-// 다른 folder(env_c64)에 .env파일 만들때 : require('dotenv').config({path: "./env_c64/.env"})
-require('dotenv').config({path: "./env_c64/.env"})
-
-
-
 // // 🍀c58-10)
 // // const passport = require('passport');
 // const LocalStrategy = require('passport-local').Strategy;
@@ -39,9 +32,16 @@ require('dotenv').config({path: "./env_c64/.env"})
 // app.use(passport.session());
 // app.use(session({ secret: 'ingyum123', resave: true, saveUninitialized: false }));
 
+// c64) .env 파일, environment variable, 
+// root folder에 .env파일 만들때 : require('dotenv').config()
+// 다른 folder(env_c64)에 .env파일 만들때 : require('dotenv').config({path: "./env_c64/.env"})
+require('dotenv').config({path: "./env_c64/.env"})
+
+
+
 
  
-// 🦄🦄c terminal 명령어 정리 👉 codingapple-Node.js.MongoDB-2022-0629-classnote폴더...server.js
+// 🦄🦄me-terminal 명령어 정리 👉 codingapple-Node.js.MongoDB-2022-0629-classnote폴더...server.js
 
 
 /* 
