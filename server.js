@@ -603,8 +603,12 @@ MongoClient.connect(uri, function(에러, p_client){
 app.use('/', require('./routes/shop_c74.js'))
 
 // ./rountes/zoo_c74.js 파일을 여기에 첨부
-app.use('/zoo', require('./routes/zoo_c74.js'))
+// 미들웨어 함수 적용하는법 : ig_middleware
+app.use('/zoo', ig_middleware,  require('./routes/zoo_c74.js'))
 
+function ig_middleware(req,res,next) {
+  console.log('ig_middleware_c74')  
+}
 
 
 
