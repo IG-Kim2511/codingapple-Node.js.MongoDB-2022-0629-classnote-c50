@@ -332,14 +332,13 @@ app.get('/detail',(req요청,res응답)=>{
 
 
 
-
-
 // // 🦄🦄c56 (회원 로그인0) 세션, JWT, OAuth 등 회원인증 방법 이해하기
 // // 🦄🦄c58 (회원 로그인1) app.use(~), passport, passport-local, express-session, passport.authenticate(~),passport.use(new LocalStorategy(~))
 
 // // 🦄🦄c60 (회원 로그인2) 아이디 비번을 DB와 비교하고 세션 만들어주기, passport.serializeUser(~)
 // // 🦄🦄c62 (회원 로그인3) 로그인 유저만 접속할 수 있는 페이지 만들기
 // console.log('🦄🦄c56,58,60,62')
+// (회원기능 만들기 실패함)
 
 // // 👉login_c58.ejs
 
@@ -588,3 +587,48 @@ MongoClient.connect(uri, function(에러, p_client){
 
 
 //🦄🦄c72 req.body._id, req.user._id, 회원 기능...게시판 기능
+// (c56~62 회원기능 실패해서 , 이강의는 걍 설명만 듣고 넘김)
+
+
+//🦄🦄c74 router관리, router.get(주소, 미들웨어, 함수), router.use(미들웨어)
+// 👉 ./routes/shop_c74.js
+// 👉 ./routes/zoo_c74.js
+
+/* 
+  🍀routes : 너무 많은 app.get(~)을 1개의 파일로 묶어서 관리하기
+*/
+
+// 🍀 app.use(미들웨어)
+// ./rountes/shop_c74.js 파일을 여기에 첨부
+app.use('/', require('./routes/shop_c74.js'))
+
+// ./rountes/zoo_c74.js 파일을 여기에 첨부
+app.use('/zoo', require('./routes/zoo_c74.js'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
