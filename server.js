@@ -333,7 +333,7 @@ app.get('/detail',(req요청,res응답)=>{
 
 
 // // 🦄🦄c56 (회원 로그인0) 세션, JWT, OAuth 등 회원인증 방법 이해하기
-// // 🦄🦄c58 (회원 로그인1) app.use(~), passport, passport-local, express-session, passport.authenticate(~),passport.use(new LocalStorategy(~))
+// // 🦄🦄c58 (회원 로그인1) 미들웨어, app.use(~), passport, express-session, passport.authenticate(~),passport.use(new LocalStorategy(~))
 
 // // 🦄🦄c60 (회원 로그인2) 아이디 비번을 DB와 비교하고 세션 만들어주기, passport.serializeUser(~)
 // // 🦄🦄c62 (회원 로그인3) 로그인 유저만 접속할 수 있는 페이지 만들기
