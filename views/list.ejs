@@ -101,8 +101,11 @@
 
                 <!-- 👉script. 44-40), 44-50) data-id="<%= ig_posts[i]._id %>-->
                 <button class="myBtn delete" data-id="<%= ig_posts[i]._id %>">삭제</button>
+                
+                <!-- 🍀c48 href="http://localhost:3000/detail/<%= ig_posts[i]._id %>"-->
+                <a class="myBtn detail"  data-id="<%= ig_posts[i]._id %>" href="http://localhost:3000/detail/<%= ig_posts[i]._id %>">Detail page</a>
+                
                 <button class="myBtn edit" data-id="<%= ig_posts[i]._id %>">edit</button>
-                <button class="myBtn detail" data-id="<%= ig_posts[i]._id %>">detail page</button>
               </div>
             <%  }  %> 
         </div>
@@ -151,13 +154,7 @@
       })
 
 
-        // 🍀 detail button -> 나중에 만들기
-
-        $('.detail').click(function (e) {
-                
-          
-        });
-
+  
 
         //🦄🦄c66
         //🍀c66-10). search기능 만들기, query string 만듬 (Query string parameters)
